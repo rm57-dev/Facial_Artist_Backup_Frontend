@@ -1,0 +1,289 @@
+:root{
+  --gold: #d6b046;
+  --gold-dark: #b18c28;
+  --rose-pastel: #f7dede;
+  --black-soft: #222222;
+  --gray-elegant: #8b8b8b;
+  --gray-dark-elegant: #555555;
+}
+
+/* Contenedor general */
+.appointments-container {
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  color: var(--black-soft);
+}
+
+/* Card principal (filtro) */
+.border-rose-pastel {
+  border: 1px solid var(--rose-pastel);
+  background: white;
+  border-radius: 12px;
+}
+
+/* Filtros y búsqueda */
+.filters-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* .filters-container .rdw-editor-main,
+.filters-container .rdw-editor-raw {
+  
+} */
+
+/* Inputs básicos (si usas tu componente Input, las clases sirven igual) */
+input[type="text"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+.select-trigger {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rose-pastel);
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--black-soft);
+  background: white;
+}
+
+input:focus,
+.select-trigger:focus {
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(214,176,70,0.12);
+}
+
+/* Lista de citas */
+.appointments-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+/* Tarjeta de cita */
+.appointment-card {
+  border: 1px solid var(--rose-pastel);
+  border-radius: 12px;
+  background: white;
+  transition: box-shadow .18s ease, transform .12s ease;
+}
+
+.appointment-card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Info izquierda (semáforo + detalles) */
+.appointment-info {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.details {
+  min-width: 280px;
+}
+
+.name-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.name-row h3 {
+  margin: 0;
+  font-size: 1.03rem;
+  color: var(--black-soft);
+  font-weight: 600;
+}
+
+.sub-info {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  color: var(--gray-elegant);
+  font-size: 0.88rem;
+  align-items: center;
+}
+
+.sub-info svg {
+  vertical-align: middle;
+  color: var(--gold);
+}
+
+/* Notas */
+.notes {
+  margin-top: 8px;
+  background: #fff4f4;
+  border: 1px solid #ffe7e7;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--gray-dark-elegant);
+  font-size: 0.9rem;
+}
+
+/* Acciones a la derecha */
+.appointment-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  min-width: 140px;
+}
+
+/* Precio y teléfono */
+.price {
+  font-weight: 700;
+  color: var(--black-soft);
+  font-size: 1rem;
+}
+
+.phone {
+  font-size: 0.85rem;
+  color: var(--gray-elegant);
+}
+
+/* Botones */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-gold-outline {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-dark);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-red-outline {
+  background: transparent;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-gold-outline:hover,
+.btn-red-outline:hover {
+  filter: brightness(0.95);
+}
+
+/* Estado (badge) estilos */
+.status-green {
+  background: #ecf9ee;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-yellow {
+  background: #fffbea;
+  color: #92400e;
+  border: 1px solid #fef08a;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-blue {
+  background: #eff6ff;
+  color: #1e3a8a;
+  border: 1px solid #bfdbfe;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-red {
+  background: #fff1f2;
+  color: #9f1239;
+  border: 1px solid #fecaca;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-gray {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Dialog / formulario de edición */
+.edit-form {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-form label,
+.edit-form .label {
+  font-size: 0.9rem;
+  color: var(--gray-elegant);
+  margin-bottom: 6px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--rose-pastel);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 6px 18px rgba(214,176,70,0.12);
+}
+
+/* Acciones del dialog */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .appointment-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .appointment-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

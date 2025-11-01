@@ -1,0 +1,24 @@
+.label-base {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* igual que gap-2 */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1; /* leading-none */
+  font-weight: 500; /* font-medium */
+  user-select: none; /* select-none */
+  color: #1a1a1a;
+}
+
+/* Si el label está deshabilitado */
+.label-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modo oscuro opcional */
+@media (prefers-color-scheme: dark) {
+  .label-base {
+    color: #e4e4e7;
+  }
+}
