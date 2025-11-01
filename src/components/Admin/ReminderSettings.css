@@ -1,0 +1,153 @@
+.reminder-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+}
+
+.icon-gold {
+  color: #d4af37;
+}
+
+.icon-white {
+  color: white;
+}
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-gold {
+  background-color: #d4af37;
+  color: white;
+}
+
+.btn-gold:hover {
+  background-color: #b28e1d;
+}
+
+.btn-outline-gold {
+  border: 1px solid #d4af37;
+  color: #d4af37;
+}
+
+.btn-outline-gold:hover {
+  background-color: #d4af37;
+  color: white;
+}
+
+.btn-outline-red {
+  border: 1px solid #e11d48;
+  color: #e11d48;
+}
+
+.btn-outline-red:hover {
+  background-color: #fee2e2;
+}
+
+.channels h3 {
+  font-weight: 600;
+}
+
+.channel-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.channel-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid #f3c2c2;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.channel-info {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.select-gold {
+  border-color: #f3c2c2;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.stat-card.yellow {
+  background-color: #facc15;
+}
+
+.stat-card.green {
+  background-color: #22c55e;
+}
+
+.stat-card.red {
+  background-color: #ef4444;
+}
+
+.reminder-item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #f3c2c2;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reminder-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reminder-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #b28e1d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-yellow {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.badge-green {
+  background-color: #dcfce7;
+  color: #065f46;
+}
+
+.badge-red {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
