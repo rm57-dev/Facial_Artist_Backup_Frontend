@@ -186,9 +186,6 @@ export const AppRutas = () => (
         </PrivateRoute>
       }
     />
-<<<<<<< HEAD
-=======
-
     <Route
   path="/agendamiento"
   element={
@@ -196,18 +193,6 @@ export const AppRutas = () => (
       <AgendarCita />
     </PrivateRoute>
   }
-
-
-
-
-
-
-
-
-
-  
     />
->>>>>>> didier
   </Routes>
 );
-
