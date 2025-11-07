@@ -101,7 +101,8 @@ import { RolPermisoPagina } from "../pages/RolPermisoPagina";
 import { Bienvenido } from "../pages/Bienvenido";
 import { useAuthContext } from "../context/authcontext";
 import { AdminDashboard } from "../components/Admin/AdminDashboard";
-import { ListaDeCitas } from "../components/Admin/ListaDeCitas"; // 👈 nombre correcto
+import { ListaDeCitas } from "../components/Admin/ListaDeCitas"; // 
+import { AgendarCita } from "../components/agendamiento/AgendarCita"; //
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const { user } = useAuthContext();
@@ -185,6 +186,28 @@ export const AppRutas = () => (
         </PrivateRoute>
       }
     />
+<<<<<<< HEAD
+=======
+
+    <Route
+  path="/agendamiento"
+  element={
+    <PrivateRoute allowedRoles={["Administrador"]}>
+      <AgendarCita />
+    </PrivateRoute>
+  }
+
+
+
+
+
+
+
+
+
+  
+    />
+>>>>>>> didier
   </Routes>
 );
 

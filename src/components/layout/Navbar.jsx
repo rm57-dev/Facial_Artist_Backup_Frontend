@@ -14,6 +14,9 @@ export const Navbar = () => {
       <NavLink to="/permisos" className="nav-link">Permisos</NavLink>
       <NavLink to="/rol-permisos" className="nav-link">Rol-Permisos</NavLink>
       <NavLink to="/admin/dashboard" className="nav-link">Dashboard</NavLink>
+      <NavLink to="/agendamiento" className="nav-link">Agendar Cita</NavLink>
+
+
     </nav>
   );
 };
