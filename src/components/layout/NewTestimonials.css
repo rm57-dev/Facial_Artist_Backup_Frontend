@@ -1,0 +1,153 @@
+:root {
+  --rose-light: #1a1a1a; /* fondo oscuro */
+  --gold: #cfa54b;
+  --gold-light: #e3c778;
+  --black-soft: #f5f5f5;
+  --gray-elegant: #bdbdbd;
+  --gray-dark-elegant: #a0a0a0;
+}
+
+/* Sección general */
+.testimonios-section {
+  background-color: var(--rose-light);
+  padding: 5rem 1rem;
+  color: var(--black-soft);
+  text-align: center;
+}
+
+/* Encabezado */
+.testimonios-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.testimonios-divider {
+  width: 80px;
+  height: 4px;
+  background-color: var(--gold);
+  margin: 0.75rem auto 1.5rem;
+  border-radius: 2px;
+}
+
+.testimonios-header p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--gray-elegant);
+  font-size: 1rem;
+}
+
+/* Tarjetas */
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.testimonio-card {
+  background: #fff;
+  color: #333;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.testimonio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.testimonio-quote {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+  font-family: serif;
+}
+
+.testimonio-avatar {
+  margin-bottom: 1rem;
+}
+
+.testimonio-avatar img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid var(--gold-light);
+  object-fit: cover;
+}
+
+.testimonio-card h4 {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.treatment {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Estrellas */
+.stars {
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  font-style: italic;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.testimonio-border {
+  width: 50px;
+  height: 4px;
+  background-color: var(--gold);
+  border-radius: 4px;
+  margin: 1.2rem auto 0;
+}
+
+/* Stats */
+.testimonios-stats {
+  background: #fff;
+  margin: 4rem auto 0;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.stat-label {
+  color: var(--gray-elegant);
+  font-size: 0.95rem;
+}
+
+.testimonios-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+}

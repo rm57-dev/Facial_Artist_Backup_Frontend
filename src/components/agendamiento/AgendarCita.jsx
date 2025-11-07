@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-import "../agendamiento/AgendarCita.css"
+import "../agendamiento/AgendarCita.css";
 
 export const AgendarCita = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     servicio: "",
     profesional: "",
-    fecha: null,
+    fecha: new Date(), // se inicia con la fecha actual
     hora: "",
     nombre: "",
     celular: "",
@@ -25,66 +28,62 @@ export const AgendarCita = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Adaptamos los datos al formato que espera el backend
-  const citaData = {
-    fecha: formData.fecha
-      ? new Date(formData.fecha).toISOString().split("T")[0]
-      : null,
-    hora:
-      formData.hora.includes("AM") || formData.hora.includes("PM")
-        ? convertirHora12a24(formData.hora)
-        : formData.hora,
-    nota: formData.notas || "",
-    estado: "pendiente",
-    id_usuario: null, // en el futuro aquí se pasará el ID del usuario logueado
+    const citaData = {
+      fecha: formData.fecha
+        ? new Date(formData.fecha).toISOString().split("T")[0]
+        : null,
+      hora:
+        formData.hora.includes("AM") || formData.hora.includes("PM")
+          ? convertirHora12a24(formData.hora)
+          : formData.hora,
+      nota: formData.notas || "",
+      estado: "pendiente",
+      id_usuario: null,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/api/citas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(citaData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("✅ Cita registrada correctamente");
+        console.log("Cita guardada:", data);
+
+        setFormData({
+          servicio: "",
+          profesional: "",
+          fecha: new Date(),
+          hora: "",
+          nombre: "",
+          celular: "",
+          email: "",
+          notas: "",
+        });
+      } else {
+        alert("⚠️ " + (data.error || "Error al registrar cita"));
+      }
+    } catch (error) {
+      console.error("Error al conectar con el backend:", error);
+      alert("Error de conexión con el servidor");
+    }
   };
 
-  try {
-    const response = await fetch("http://localhost:3000/api/citas", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(citaData),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert("✅ Cita registrada correctamente");
-      console.log("Cita guardada:", data);
-
-      // Resetear formulario
-      setFormData({
-        servicio: "",
-        profesional: "",
-        fecha: null,
-        hora: "",
-        nombre: "",
-        celular: "",
-        email: "",
-        notas: "",
-      });
-    } else {
-      alert("⚠️ " + (data.error || "Error al registrar cita"));
-    }
-  } catch (error) {
-    console.error("Error al conectar con el backend:", error);
-    alert("Error de conexión con el servidor");
+  function convertirHora12a24(hora12) {
+    const [time, meridian] = hora12.split(" ");
+    let [hours, minutes] = time.split(":");
+    hours = parseInt(hours);
+    if (meridian === "PM" && hours !== 12) hours += 12;
+    if (meridian === "AM" && hours === 12) hours = 0;
+    return `${hours.toString().padStart(2, "0")}:${minutes}:00`;
   }
-};
 
-function convertirHora12a24(hora12) {
-  const [time, meridian] = hora12.split(" ");
-  let [hours, minutes] = time.split(":");
-  hours = parseInt(hours);
-  if (meridian === "PM" && hours !== 12) hours += 12;
-  if (meridian === "AM" && hours === 12) hours = 0;
-  return `${hours.toString().padStart(2, "0")}:${minutes}:00`;
-}
-
-
-  // Horas simuladas disponibles
   const horasDisponibles = [
     "09:00 AM",
     "10:00 AM",
@@ -102,10 +101,9 @@ function convertirHora12a24(hora12) {
         <p>Completa los datos para tu cita de belleza</p>
 
         <form onSubmit={handleSubmit} className="formulario_cita">
-
           {/* -------- DETALLES DE LA CITA -------- */}
           <section className="detalles_cita">
-            <h3>🗓️ Detalles de la Cita</h3>
+            <h3> Detalles de la Cita</h3>
 
             <div className="campo">
               <label>Servicio *</label>
@@ -137,15 +135,15 @@ function convertirHora12a24(hora12) {
             </div>
 
             <div className="campo_doble">
-              <div className="campo">
-                <label>Fecha *</label>
+              <div className="campo calendario-inline">
+                <label>Selecciona la fecha *</label>
+                {/*  Aquí el calendario siempre visible */}
                 <DatePicker
                   selected={formData.fecha}
                   onChange={handleDateChange}
                   dateFormat="dd/MM/yyyy"
                   minDate={new Date()}
-                  placeholderText="Selecciona una fecha"
-                  className="input_fecha"
+                  inline // hace que el calendario esté siempre visible
                 />
               </div>
 
@@ -155,13 +153,8 @@ function convertirHora12a24(hora12) {
                   name="hora"
                   value={formData.hora}
                   onChange={handleChange}
-                  disabled={!formData.fecha}
                 >
-                  <option value="">
-                    {formData.fecha
-                      ? "Selecciona una hora"
-                      : "Selecciona una fecha primero"}
-                  </option>
+                  <option value="">Selecciona una hora</option>
                   {horasDisponibles.map((hora, i) => (
                     <option key={i} value={hora}>
                       {hora}
@@ -174,7 +167,7 @@ function convertirHora12a24(hora12) {
 
           {/* -------- DATOS DEL CLIENTE -------- */}
           <section className="tus_datos">
-            <h3>👤 Tus Datos</h3>
+            <h3>Tus Datos</h3>
 
             <div className="campo_doble">
               <div className="campo">
@@ -236,7 +229,12 @@ function convertirHora12a24(hora12) {
             Inicia sesión para acceder a tus datos e historial de citas,
             o crea una cuenta nueva.
           </p>
-          <button className="btn_login">Iniciar Sesión / Registrarse</button>
+          <button
+            className="btn_login"
+            onClick={() => navigate("/login")} // redirige al login
+          >
+            Iniciar Sesión / Registrarse
+          </button>
           <button className="btn_invitado">Continuar como invitado</button>
         </div>
       </div>

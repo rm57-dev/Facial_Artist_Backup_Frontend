@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../../context/authcontext";
 import { useNavigate, Link } from "react-router-dom";
-
-import "./login.css"
+import "./login.css";
 
 export const Login = () => {
   const { login, user } = useAuthContext();
@@ -25,11 +24,30 @@ export const Login = () => {
   };
 
   return (
-    <div className="login-fondo">
-      <div className="login-tarjeta">
-        <h2 className="login-titulo">Inicio de Sesion</h2>
+    <div className="login-container">
+      {/* 🔙 Flecha para volver */}
+      <button className="login-back" onClick={() => navigate("/")}>
+        ← Volver al inicio
+      </button>
+
+      {/* Encabezado */}
+      <div className="login-header">
+        <div className="login-logo"></div>
+        <h1 className="login-nombre">Natalia Salazar Artist</h1>
+        <p className="login-subtitulo">Tu belleza, nuestra pasión</p>
+      </div>
+
+      {/* Tarjeta principal */}
+      <div className="login-card">
+        <h2 className="login-titulo">Iniciar Sesión</h2>
+        <p className="login-descripcion">
+          Accede a tu cuenta para gestionar tus citas
+        </p>
+
         <form className="login-formulario" onSubmit={handleSubmit}>
-          <label className="login-label" htmlFor="email">Email:</label>
+          <label className="login-label" htmlFor="email">
+            Correo Electrónico
+          </label>
           <input
             className="login-input"
             type="email"
@@ -37,9 +55,12 @@ export const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="tu@email.com"
           />
-          
-          <label className="login-label" htmlFor="password">Contraseña:</label>
+
+          <label className="login-label" htmlFor="password">
+            Contraseña
+          </label>
           <input
             className="login-input"
             type="password"
@@ -47,14 +68,22 @@ export const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="••••••••"
           />
-          <button className="btn-login" type="submit">Iniciar</button>
+
+          <button className="btn-login" type="submit">
+            Iniciar Sesión
+          </button>
         </form>
 
-        <p className="login-texto">
-          ¿No tienes cuenta?{""}
-          <Link className="login-enlace" to="/registro">Regístrate</Link>
-        </p>
+        <div className="login-links">
+          <p>
+            ¿No tienes cuenta?{" "}
+            <Link className="login-enlace" to="/registro">
+              Regístrate
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
