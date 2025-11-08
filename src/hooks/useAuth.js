@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { loginRequest } from "../services/authService";
 
 export const useAuth = () => {
@@ -10,29 +10,37 @@ export const useAuth = () => {
       const storedUser = JSON.parse(localStorage.getItem("user"));
       if (storedUser) setUser(storedUser);
     }
-  }, [token]);
+  }, [token, user]);
 
   const login = async (email, password) => {
-    const data = await loginRequest({email, password});
+    try {
+      const data = await loginRequest({ email, password });
 
-    if (data.token) {
-      setToken(data.token);
-      setUser(data.usuario);
+      if (data.token) {
+        setToken(data.token);
+        setUser(data.usuario);
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.usuario));
+        // Guardar en localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.usuario));
 
-    return true;
-  }
-  return false;
-};
+        // Devolver el usuario directamente
+        return data.usuario;
+      }
 
-const logout = () => {
-  setUser(null);
-  setToken(null);
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-};
+      return null;
+    } catch (error) {
+      console.error("Error en login:", error);
+      return null;
+    }
+  };
+
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
 
   return { user, token, login, logout };
 };

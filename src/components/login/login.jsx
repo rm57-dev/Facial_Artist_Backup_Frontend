@@ -4,19 +4,22 @@ import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 
 export const Login = () => {
-  const { login, user } = useAuthContext();
+  const { login } = useAuthContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await login(email, password);
-    if (success) {
-      if (user?.rol === "Administrador") {
+
+    // login devuelve el usuario autenticado o null
+    const userLogged = await login(email, password);
+
+    if (userLogged) {
+      if (userLogged.rol === "Administrador") {
         navigate("/principal");
       } else {
-        navigate("/bienvenido");
+        navigate("/client-dashboard");
       }
     } else {
       alert("Credenciales incorrectas");
@@ -25,7 +28,7 @@ export const Login = () => {
 
   return (
     <div className="login-container">
-      {/* 🔙 Flecha para volver */}
+      {/* Flecha para volver */}
       <button className="login-back" onClick={() => navigate("/")}>
         ← Volver al inicio
       </button>
