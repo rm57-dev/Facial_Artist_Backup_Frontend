@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Services.css";
 
 import lifting from "../assets/ceja1.jpg";
@@ -9,6 +10,9 @@ import diseno from "../assets/ceja6.jpg";
 import henna from "../assets/cejagaleria.jpg";
 
 const Services = () => {
+  const navigate = useNavigate();
+  const [selectedService, setSelectedService] = useState(null);
+
   const services = [
     {
       id: 1,
@@ -54,13 +58,25 @@ const Services = () => {
     },
   ];
 
+  const handleOpenModal = (service) => {
+    setSelectedService(service);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedService(null);
+  };
+
+  const handleAgendar = () => {
+    navigate("/agendamiento");
+  };
+
   return (
     <section className="services-section" id="servicios">
       <div className="services-header">
         <h2 className="services-title">Nuestros Servicios</h2>
         <div className="gold-underline"></div>
         <p className="services-subtitle">
-          Descubre una gama completa de servicios diseñados para realizar tu
+          Descubre una gama completa de servicios diseñados para realzar tu
           belleza natural con técnicas innovadoras y productos de la más alta
           calidad.
         </p>
@@ -68,7 +84,11 @@ const Services = () => {
 
       <div className="services-grid">
         {services.map((service) => (
-          <div key={service.id} className="service-card">
+          <div
+            key={service.id}
+            className="service-card"
+            onClick={() => handleOpenModal(service)}
+          >
             <img
               src={service.image}
               alt={service.title}
@@ -80,6 +100,30 @@ const Services = () => {
           </div>
         ))}
       </div>
+
+      {/* 🌸 MODAL DE DETALLES DEL SERVICIO */}
+      {selectedService && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()} // Evita cerrar al hacer click dentro
+          >
+            <button className="modal-close" onClick={handleCloseModal}>
+              ✕
+            </button>
+            <img
+              src={selectedService.image}
+              alt={selectedService.title}
+              className="modal-image"
+            />
+            <h3 className="modal-title">{selectedService.title}</h3>
+            <p className="modal-description">{selectedService.description}</p>
+            <button className="btn-agendar-modal" onClick={handleAgendar}>
+              Agendar Cita
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

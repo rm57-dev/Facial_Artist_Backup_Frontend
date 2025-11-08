@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // 👈 Solo esto se agregó
 import "./Hero.css";
 import heroBg from "../assets/cejalaminada.jpg"; // 👈 asegúrate de que exista esta imagen
 
 export default function Hero({ onBookingClick }) {
+  const navigate = useNavigate(); // 👈 Hook de navegación
+
   const scrollToServices = () => {
     const section = document.getElementById("servicios");
     if (section) section.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // ✅ Redirige al agendamiento, pero sin romper tu prop
+  const handleBooking = () => {
+    if (onBookingClick) onBookingClick();
+    navigate("/agendamiento");
   };
 
   return (
@@ -26,7 +35,7 @@ export default function Hero({ onBookingClick }) {
         </p>
 
         <div className="hero-buttons">
-          <button className="btn-primary" onClick={onBookingClick}>
+          <button className="btn-primary" onClick={handleBooking}>
             Reservar Cita
           </button>
           <button className="btn-outline" onClick={scrollToServices}>
@@ -44,3 +53,4 @@ export default function Hero({ onBookingClick }) {
     </section>
   );
 }
+
