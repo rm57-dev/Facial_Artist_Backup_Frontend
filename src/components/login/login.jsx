@@ -18,8 +18,10 @@ export const Login = () => {
     if (userLogged) {
       if (userLogged.rol === "Administrador") {
         navigate("/principal");
-      } else {
+      } else if (userLogged.rol === "Usuario") {
         navigate("/client-dashboard");
+      } else {
+        alert("Rol no reconocido");
       }
     } else {
       alert("Credenciales incorrectas");
@@ -43,9 +45,7 @@ export const Login = () => {
       {/* Tarjeta principal */}
       <div className="login-card">
         <h2 className="login-titulo">Iniciar Sesión</h2>
-        <p className="login-descripcion">
-          Accede a tu cuenta para gestionar tus citas
-        </p>
+        <p className="login-descripcion">Accede a tu cuenta para gestionar tus citas</p>
 
         <form className="login-formulario" onSubmit={handleSubmit}>
           <label className="login-label" htmlFor="email">

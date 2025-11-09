@@ -151,6 +151,7 @@ import { useAuthContext } from "../context/authcontext";
 import { AdminDashboard } from "../components/Admin/AdminDashboard";
 import { ListaDeCitas } from "../components/Admin/ListaDeCitas";
 import { AgendarCita } from "../components/agendamiento/AgendarCita";
+import { ClientDashboard } from "../components/client/ClientDashboard";
 
 // ✅ Importar los layouts y headers correctos
 import Header from "../components/layout/Header"; // Header público
@@ -288,6 +289,16 @@ export const AppRutas = () => (
       element={
         <PrivateRoute allowedRoles={["Administrador"]}>
           <ListaDeCitas />
+        </PrivateRoute>
+      }
+    />
+
+    {/* ClientDashboard o perfil de usuario */}
+    <Route
+      path="/client-dashboard"
+      element={
+        <PrivateRoute allowedRoles={["Usuario"]}>
+          <ClientDashboard />
         </PrivateRoute>
       }
     />

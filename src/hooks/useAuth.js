@@ -15,7 +15,7 @@ export const useAuth = () => {
   const login = async (email, password) => {
     try {
       const data = await loginRequest({ email, password });
-
+        console.log("🟩 Datos del backend:", data);
       if (data.token) {
         setToken(data.token);
         setUser(data.usuario);
