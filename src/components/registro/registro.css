@@ -32,6 +32,21 @@ body {
   text-align: center;
 }
 
+/* 🔙 BOTÓN VOLVER */
+.registro-volver {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.registro-volver:hover {
+  color: var(--gold-dark);
+}
+
 .registro-icono {
   font-size: 2.8rem;
   background: linear-gradient(180deg, var(--gold), var(--gold-dark));
@@ -45,44 +60,47 @@ body {
   justify-content: center;
 }
 
-.registro-brand {
+.registro-titulo {
   margin: 0;
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
 .registro-subtitulo {
   margin: 0.2rem 0 1.5rem;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .registro-card {
   background: #fff;
   border-radius: 1rem;
-  padding: 1.8rem;
+  padding: 2rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-.registro-titulo {
-  margin: 0;
-  font-size: 1.2rem;
+/* 🎀 Títulos dentro de la tarjeta */
+.registro-card-titulo {
+  margin-top: -0.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 
-.registro-descripcion {
+.registro-card-sub {
   color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
 }
 
+/* FORMULARIO GENERAL */
 .registro-formulario {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.registro-grid {
+/* GRID DE 2 COLUMNAS */
+.registro-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -94,28 +112,30 @@ body {
   text-align: left;
 }
 
-.registro-etiqueta {
+.registro-grupo label {
   font-weight: 500;
   color: #705b54;
   margin-bottom: 0.25rem;
   font-size: 0.85rem;
 }
 
-.registro-entrada {
+/* INPUTS */
+.registro-grupo input {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
   border-radius: 0.6rem;
   padding: 0.75rem;
   font-size: 1rem;
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
-.registro-entrada:focus {
+.registro-grupo input:focus {
   border-color: var(--gold);
   box-shadow: 0 0 6px rgba(201, 166, 90, 0.3);
   outline: none;
 }
 
+/* BOTÓN */
 .registro-boton {
   background: linear-gradient(90deg, var(--gold), var(--gold-dark));
   color: white;
@@ -126,6 +146,7 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-top: 0.5rem;
 }
 
 .registro-boton:hover {
@@ -133,6 +154,7 @@ body {
   box-shadow: 0 6px 14px rgba(160, 125, 60, 0.25);
 }
 
+/* MENSAJES */
 .registro-error {
   color: red;
   font-size: 0.9rem;
@@ -159,8 +181,9 @@ body {
   text-decoration: underline;
 }
 
+/* RESPONSIVE */
 @media (max-width: 600px) {
-  .registro-grid {
+  .registro-grid-2 {
     grid-template-columns: 1fr;
   }
 
