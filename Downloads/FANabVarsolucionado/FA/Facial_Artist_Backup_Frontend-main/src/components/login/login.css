@@ -1,0 +1,179 @@
+/* === Fondo general === */
+.login-container {
+  background-color: #fffcf1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* === Encabezado === */
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  background-color: #d4af37;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+}
+
+.login-nombre {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2b1b12;
+}
+
+.login-subtitulo {
+  color: #9a8b7a;
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+/* === Tarjeta === */
+.login-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* === Títulos === */
+.login-titulo {
+  font-size: 1.3rem;
+  color: #2b1b12;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.login-descripcion {
+  color: #80786f;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+/* === Formulario === */
+.login-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-label {
+  text-align: left;
+  color: #2b1b12;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.login-input {
+  padding: 10px;
+  border: 1px solid #d8c9aa;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: #fafafa;
+}
+
+.login-input:focus {
+  border-color: #c8a654;
+  box-shadow: 0 0 0 2px rgba(200, 166, 84, 0.25);
+}
+
+/* === Botones === */
+.btn-login {
+  background-color: #d4af37;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #b49345;
+}
+
+.btn-admin {
+  background-color: transparent;
+  border: 1.5px solid #c8a654;
+  border-radius: 8px;
+  color: #c8a654;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.3s;
+}
+
+.btn-admin:hover {
+  background-color: #f7f2e9;
+}
+
+/* === Enlaces === */
+.login-links {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.login-links p {
+  margin: 5px 0;
+}
+
+.login-enlace {
+  color: #c26a6a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-enlace:hover {
+  text-decoration: underline;
+}
+
+.login-olvido {
+  color: #a29b91;
+  font-size: 0.9rem;
+}
+
+/* === Responsive === */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 25px;
+  }
+  .login-nombre {
+    font-size: 1.3rem;
+  }
+}
+/* === Botón de volver al inicio === */
+.login-back {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  background: none;
+  border: none;
+  color: #b48d46;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.login-back:hover {
+  color: #9c7c3c;
+  transform: translateX(-3px);
+}
