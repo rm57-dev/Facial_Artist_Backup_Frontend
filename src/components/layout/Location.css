@@ -12,10 +12,9 @@
 .location-header h2 {
   font-size: 2.8rem;
   font-weight: 700;
-  color: var(--black-soft);
+  color: #1a1a1a;
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
-  color: #1a1a1a;
 }
 
 .underline {
@@ -30,6 +29,15 @@
   color: #444;
   font-size: 1.1rem;
   margin-bottom: 3rem;
+}
+
+.location-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Grid principal */
@@ -87,89 +95,14 @@
 }
 
 .detail-card h3 {
-  color: var(--black-soft);
+  color: #000; /* Negro sólido */
   font-weight: 600;
   margin-bottom: 0.3rem;
 }
 
 .detail-card p {
-  color: #555;
+  color: #000; /* Negro sólido */
   font-size: 0.95rem;
   line-height: 1.5;
   white-space: pre-line;
-}
-
-/* Extra Info */
-.extra-info {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .extra-info {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.card {
-  background-color: #f9f9f9;
-  border-radius: 14px;
-  padding: 2rem;
-  border: 1.5px solid var(--gold-light);
-  text-align: left;
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.card-header .icon {
-  color: var(--gold);
-  margin-right: 0.6rem;
-}
-
-.card h3 {
-  color: var(--black-soft);
-  font-weight: 600;
-  font-size: 1.2rem;
-}
-
-.card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.card ul li {
-  position: relative;
-  margin-left: 1rem;
-  margin-bottom: 0.6rem;
-  color: #555;
-}
-
-.card ul li::before {
-  content: "•";
-  color: var(--gold);
-  position: absolute;
-  left: -1rem;
-}
-
-.contact-info a {
-  color: var(--gold-dark);
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-.location-subtitle {
-  color: #666;
-  font-size: 1.1rem;
-  max-width: 650px;
-  margin: 0 auto;
-  line-height: 1.6;
-  font-family: "Poppins", sans-serif;
 }

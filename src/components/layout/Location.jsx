@@ -1,26 +1,20 @@
 import React from "react";
 import "./Location.css";
-import { MapPin, Clock, Navigation, Phone } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 
 export function Location() {
   const locationDetails = [
     {
       icon: <MapPin />,
       title: "Dirección Completa",
-      content: "Cl. 33 B #753, Urbanización del bosque, Palmira, Valle del Cauca",
+      content: "Cl. 33 B #7-53, Urbanización del bosque, Palmira, Valle del Cauca",
     },
     {
       icon: <Clock />,
       title: "Horarios de Atención",
-      content: "Lunes a Viernes: 9:00 AM - 7:00 PM\nSábados: 9:00 AM - 5:00 PM\nDomingos: Cerrado",
+      content:
+        "Lunes a Viernes: 9:00 AM - 7:00 PM\nSábados: 9:00 AM - 5:00 PM\nDomingos: Cerrado",
     },
-  ];
-
-  const landmarks = [
-    "Centro Comercial Andino (200m)",
-    "Hotel Marriott (150m)",
-    "Zona T (300m)",
-    "Parque de la 93 (500m)",
   ];
 
   return (
@@ -31,12 +25,10 @@ export function Location() {
           <h2>Cómo Llegar</h2>
           <div className="underline"></div>
           <div className="location-subtitle">
-          <p>
-            Nos ubicamos en el corazón de la Zona Rosa de Bogotá, en un lugar
-            accesible y con múltiples opciones de transporte.
-          </p>
+            <p>
+           Nos ubicamos en el suroeste de Palmira, en una zona tranquila y segura, con fácil acceso y rodeada de comercios para tu comodidad.
+            </p>
           </div>
-          
         </div>
 
         {/* Mapa y datos */}
@@ -65,49 +57,6 @@ export function Location() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Referencias y contacto */}
-        <div className="extra-info">
-          <div className="card">
-            <div className="card-header">
-              <Navigation className="icon" />
-              <h3>Puntos de Referencia</h3>
-            </div>
-            <ul>
-              {landmarks.map((landmark, index) => (
-                <li key={index}>{landmark}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="card">
-            <div className="card-header">
-              <Phone className="icon" />
-              <h3>¿Necesitas Ayuda?</h3>
-            </div>
-            <p>
-              Si tienes dificultades para encontrarnos o necesitas indicaciones
-              específicas, no dudes en contactarnos. Nuestro equipo estará
-              encantado de ayudarte.
-            </p>
-            <div className="contact-info">
-              <p>
-                <strong>Teléfono:</strong>{" "}
-                <a href="tel:+573168978439">+57 (316) 897-8439</a>
-              </p>
-              <p>
-                <strong>WhatsApp:</strong>{" "}
-                <a
-                  href="https://wa.me/573168978439"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  +57 (316) 897-8439
-                </a>
-              </p>
-            </div>
           </div>
         </div>
       </div>

@@ -13,10 +13,10 @@ export default function Header() {
     { name: "Servicios", href: "#servicios" },
     { name: "Galería", href: "#galeria" },
     { name: "Ubicación", href: "#ubicacion" },
-    { name: "Contacto", href: "#contacto" },
+    
   ];
 
-  // 👇 Funciones para los botones
+  // 👇 Funciones para los bot}ones
   const handleLoginClick = () => navigate("/login");
   const handleBookingClick = () => navigate("/agendamiento");
 

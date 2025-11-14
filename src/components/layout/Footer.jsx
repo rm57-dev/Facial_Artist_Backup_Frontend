@@ -7,10 +7,13 @@ import {
   Facebook,
   Twitter,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // 👈 IMPORTANTE
 import logo from "../assets/logoenblanco.png";
 import "./Footer.css";
 
 const Footer = () => {
+  const navigate = useNavigate(); // 👈 ACTIVAMOS NAVEGACIÓN
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -27,10 +30,11 @@ const Footer = () => {
           </p>
 
           <div className="newsletter">
-            <h4>Suscríbete a nuestras novedades</h4>
+            <h4>Registrate para agendar tu cita.</h4>
             <div className="newsletter-input">
-              <input type="email" placeholder="Tu email" />
-              <button>Suscribir</button>
+              <button onClick={() => navigate("/registro")}>
+                Registrate
+              </button>
             </div>
           </div>
         </div>
@@ -41,14 +45,13 @@ const Footer = () => {
           <ul>
             <li>
               <MapPin className="icon" />
-              Calle 85 #15-32, Zona Rosa<br />
-              Bogotá, Colombia - Piso 3
+              Cl. 33 B #753, Urbanización del bosque, Palmira, Valle del Cauca
             </li>
             <li>
-              <Phone className="icon" /> +57 (301) 555-0123
+              <Phone className="icon" /> +57 316 897 8439
             </li>
             <li>
-              <Mail className="icon" /> info@nataliasalazarartist.com
+              <Mail className="icon" /> nataliasalazar0794@gmail.com
             </li>
           </ul>
         </div>
@@ -74,16 +77,14 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
               className="icon instagram"
-              title="Instagram"
             >
               <Instagram size={18} />
             </a>
             <a
-              href="https://facebook.com/nataliasalazarartist"
+              href="https://www.facebook.com/nataliamakeup07/?locale=es_LA"
               target="_blank"
               rel="noreferrer"
               className="icon facebook"
-              title="Facebook"
             >
               <Facebook size={18} />
             </a>
@@ -92,7 +93,6 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
               className="icon twitter"
-              title="Twitter"
             >
               <Twitter size={18} />
             </a>
@@ -106,8 +106,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>© 2024 NataliaSalazarArtist. Todos los derechos reservados.</p>
         <div className="footer-links">
-          <a href="#privacy">Política de Privacidad</a>
-          <a href="#terms">Términos de Servicio</a>
+      
         </div>
       </div>
     </footer>
