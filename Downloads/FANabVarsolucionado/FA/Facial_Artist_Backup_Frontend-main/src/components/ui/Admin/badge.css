@@ -1,0 +1,30 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+/* Colores base */
+.bg-green-100 { background-color: #d1fae5; }
+.text-green-800 { color: #065f46; }
+.border-green-200 { border-color: #a7f3d0; }
+
+.bg-yellow-100 { background-color: #fef3c7; }
+.text-yellow-800 { color: #92400e; }
+.border-yellow-200 { border-color: #fde68a; }
+
+.bg-blue-100 { background-color: #dbeafe; }
+.text-blue-800 { color: #1e3a8a; }
+.border-blue-200 { border-color: #bfdbfe; }
+
+.bg-red-100 { background-color: #fee2e2; }
+.text-red-800 { color: #991b1b; }
+.border-red-200 { border-color: #fecaca; }
+
+.bg-gray-100 { background-color: #f3f4f6; }
+.text-gray-800 { color: #1f2937; }
+.border-gray-200 { border-color: #e5e7eb; }
