@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/authcontext";
 import {
-  Calendar,
-  Clock,
   User,
   Phone,
   Mail,
@@ -9,44 +9,22 @@ import {
   Plus,
   LogOut,
   Sparkles,
-  Heart,
-  Star,
   Home,
 } from "lucide-react";
 import "./ClientDashboard.css";
 
-export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userData }) => {
-  const [activeTab, setActiveTab] = useState("appointments");
+export const ClientDashboard = ({ onBookingClick, onHomeClick, userData }) => {
+  const [activeTab, setActiveTab] = useState("profile");
 
-  const appointments = [
-    {
-      id: "1",
-      service: "Microblading",
-      date: "2025-01-20",
-      time: "10:00",
-      status: "confirmed",
-      price: 350000,
-      professional: "Natalia Salazar",
-    },
-    {
-      id: "2",
-      service: "Retoque Microblading",
-      date: "2024-12-15",
-      time: "14:30",
-      status: "completed",
-      price: 200000,
-      professional: "Natalia Salazar",
-    },
-    {
-      id: "3",
-      service: "Laminado de cejas",
-      date: "2024-11-10",
-      time: "11:00",
-      status: "completed",
-      price: 120000,
-      professional: "Natalia Salazar",
-    },
-  ];
+  // ✅ CONTEXTO Y NAVEGACIÓN
+  const { logout } = useAuthContext();
+  const navigate = useNavigate();
+
+  // ✅ FUNCIÓN DEL BOTÓN "Cerrar sesión"
+  const handleLogout = () => {
+    logout();          // Limpia token / sesión
+    navigate("/login"); // Redirige al login
+  };
 
   const photoHistory = [
     {
@@ -65,23 +43,9 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
     },
   ];
 
-  const formatPrice = (price) =>
-    new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", minimumFractionDigits: 0 }).format(price);
-
-  const formatDate = (dateString) =>
-    new Date(dateString).toLocaleDateString("es-ES", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-
-  const totalSpent = appointments
-    .filter((a) => a.status === "completed")
-    .reduce((total, a) => total + a.price, 0);
-
   return (
     <div className="dashboard_bg">
+
       {/* HEADER */}
       <header className="dashboard_header">
         <div className="header_left">
@@ -98,10 +62,13 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
               <Home className="icon_small" /> Volver a inicio
             </button>
           )}
+
           <button className="btn_gold" onClick={onBookingClick}>
             <Plus className="icon_small" /> Nueva Cita
           </button>
-          <button className="btn_outline" onClick={onLogout}>
+
+          {/* 🔴 BOTÓN CERRAR SESIÓN CON FUNCIONALIDAD */}
+          <button className="btn_outline" onClick={handleLogout}>
             <LogOut className="icon_small" /> Cerrar sesión
           </button>
         </div>
@@ -118,65 +85,20 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
           <div>
             <h2>¡Hola, {userData?.firstName || "María"}! 👋</h2>
             <p>Bienvenida de vuelta. Tu belleza es nuestra pasión.</p>
-            <div className="welcome_stats">
-              <span>
-                <Calendar className="icon_small" /> {appointments.length} citas
-              </span>
-              <span>
-                <Star className="icon_small gold" /> Cliente VIP
-              </span>
-            </div>
           </div>
-        </div>
-        <div className="welcome_total">
-          <p>Total invertido</p>
-          <h3>{formatPrice(totalSpent)}</h3>
         </div>
       </section>
-
-      {/* STATS */}
-      <div className="stats_grid">
-        <div className="stat_card">
-          <Calendar className="icon_stat green" />
-          <h4>Próxima Cita</h4>
-          <p>20 de Enero</p>
-          <span className="text_green">Microblading</span>
-        </div>
-
-        <div className="stat_card">
-          <Clock className="icon_stat blue" />
-          <h4>Tiempo con Nosotras</h4>
-          <p>8 meses</p>
-          <span className="text_blue">Desde Mayo 2024</span>
-        </div>
-
-        <div className="stat_card">
-          <Heart className="icon_stat pink" />
-          <h4>Satisfacción</h4>
-          <div className="stars">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Star key={i} className="icon_small gold" />
-            ))}
-          </div>
-          <span className="text_pink">5.0 estrellas</span>
-        </div>
-      </div>
 
       {/* TABS */}
       <div className="tabs">
         <div className="tabs_header">
-          <button
-            className={`tab_btn ${activeTab === "appointments" ? "active" : ""}`}
-            onClick={() => setActiveTab("appointments")}
-          >
-            <Calendar className="icon_small" /> Mis Citas
-          </button>
           <button
             className={`tab_btn ${activeTab === "profile" ? "active" : ""}`}
             onClick={() => setActiveTab("profile")}
           >
             <User className="icon_small" /> Mi Perfil
           </button>
+
           <button
             className={`tab_btn ${activeTab === "gallery" ? "active" : ""}`}
             onClick={() => setActiveTab("gallery")}
@@ -187,19 +109,8 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
 
         {/* TAB CONTENIDO */}
         <div className="tab_content">
-          {activeTab === "appointments" && (
-            <div className="appointments_list">
-              {appointments.map((a) => (
-                <div key={a.id} className="appointment_card">
-                  <h4>{a.service}</h4>
-                  <p>{formatDate(a.date)}</p>
-                  <p>{a.time} — {a.professional}</p>
-                  <p className={`status ${a.status}`}>{a.status}</p>
-                </div>
-              ))}
-            </div>
-          )}
 
+          {/* PERFIL */}
           {activeTab === "profile" && (
             <div className="profile_tab">
               <h3>Información Personal</h3>
@@ -218,13 +129,14 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
                 </div>
                 <div>
                   <label>Fecha de nacimiento</label>
-                  <p>{userData?.birthDate ? formatDate(userData.birthDate) : "15 de Marzo, 1985"}</p>
+                  <p>{userData?.birthDate || "15 de Marzo, 1985"}</p>
                 </div>
               </div>
               <button className="btn_outline gold">Editar información</button>
             </div>
           )}
 
+          {/* GALERÍA */}
           {activeTab === "gallery" && (
             <div className="gallery_tab">
               <h3>Mi Historial Fotográfico</h3>
@@ -233,7 +145,7 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
                 {photoHistory.map((p) => (
                   <div key={p.id} className="photo_card">
                     <h4>{p.service}</h4>
-                    <p>{formatDate(p.date)}</p>
+                    <p>{p.date}</p>
                     <div className="photos">
                       <div>
                         <p>Antes</p>
@@ -249,6 +161,7 @@ export const ClientDashboard = ({ onLogout, onBookingClick, onHomeClick, userDat
               </div>
             </div>
           )}
+
         </div>
       </div>
     </div>

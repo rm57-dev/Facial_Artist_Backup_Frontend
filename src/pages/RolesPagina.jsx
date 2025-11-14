@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react';
 import { ModalRol } from "../components/ui/ModalRol";
 import { leerRoles, crearRol, actualizarRol, eliminarRol } from '../services/rolService';
-import { Layout } from "../components/layout/Layout";
+
 
 export const RolesPagina = () => {
     const [roles, setRoles] = useState([]);
@@ -26,7 +26,6 @@ export const RolesPagina = () => {
     };
 
     return (
-      <Layout>
         <div className="pagina-contenedor">
           <h2 className='pagina-titulo'>Gestion de Roles</h2>
 
@@ -88,6 +87,5 @@ export const RolesPagina = () => {
             />
           )}
         </div>
-      </Layout>
     );
 };

@@ -1,10 +1,10 @@
 :root {
   --gold: #c9a65a;
   --gold-dark: #b08a47;
-  --bg: #fff8f6;
-  --text: #3b2f2a;
+  --bg: hsl(13, 100%, 98%);
+  --text: #000000;
   --muted: #7c6f68;
-  --input-bg: #fbf9f9;
+  --input-bg: #fffefe;
   --input-border: #f0e6e6;
 }
 
@@ -32,7 +32,6 @@ body {
   text-align: center;
 }
 
-/* 🔙 BOTÓN VOLVER */
 .registro-volver {
   display: flex;
   align-items: center;
@@ -79,7 +78,6 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* 🎀 Títulos dentro de la tarjeta */
 .registro-card-titulo {
   margin-top: -0.5rem;
   font-size: 1.3rem;
@@ -127,8 +125,33 @@ body {
   padding: 0.75rem;
   font-size: 1rem;
   transition: 0.2s ease;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+  caret-color: #a31a1a !important;
 }
 
+.registro-grupo input::placeholder {
+  color: #999999 !important;
+  opacity: 1 !important;
+}
+
+/* Fix especial password */
+input[type="password"] {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+/* Fix especial date */
+input[type="date"] {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  color: #000 !important;
+}
+
+/* Focus */
 .registro-grupo input:focus {
   border-color: var(--gold);
   box-shadow: 0 0 6px rgba(201, 166, 90, 0.3);
@@ -180,6 +203,7 @@ body {
 .registro-enlace:hover {
   text-decoration: underline;
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 600px) {

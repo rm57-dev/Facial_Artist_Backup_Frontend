@@ -173,57 +173,49 @@
 
 .stars { display: flex; justify-content: center; }
 
-/* TABS */
+/* TABS – CORREGIDOS */
 .tabs {
   max-width: 1100px;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .tabs_header {
   display: flex;
+  background: white;
   border: 1px solid #f1d7b2;
-  background: #fff5ef;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
+  justify-content: center;
 }
 
 .tab_btn {
-  flex: 1;
-  padding: 0.8rem;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+  flex: 0 0 auto;
+  padding: 0.9rem 2rem;
   font-weight: 500;
-  transition: all 0.3s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #805b2f;
+  transition: .2s;
 }
 
 .tab_btn:hover {
-  background: #fff0e3;
+  background: #fff2e2;
 }
 
 .tab_btn.active {
   background: #b48d46;
-  color: white;
+  color: #fff;
 }
 
-/* CONTENIDOS */
+/* QUITAR FONDO ROSADO */
 .tab_content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
   margin-top: 1.5rem;
 }
-
-/* CITAS */
-.appointment_card {
-  border: 1px solid #f1d7b2;
-  background: white;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.status.confirmed { color: green; }
-.status.completed { color: blue; }
-.status.pending { color: orange; }
-.status.cancelled { color: red; }
 
 /* PERFIL */
 .profile_tab {
@@ -231,6 +223,9 @@
   border: 1px solid #f4d9b1;
   border-radius: 16px;
   padding: 2rem;
+  max-width: 480px;
+  margin: auto;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
 .profile_grid {

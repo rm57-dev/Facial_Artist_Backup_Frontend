@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { ModalPermiso } from "../components/ui/ModalPermiso";
 import { leerPermisos, crearPermiso, actualizarPermiso, eliminarPermiso } from "../services/permisoService";
-import { Layout } from "../components/layout/Layout";
 
 export const PermisosPagina = () => {
   const [permisos, setPermisos] = useState([]);
@@ -26,7 +25,6 @@ export const PermisosPagina = () => {
   };
 
   return (
-    <Layout>
       <div className="pagina-contenedor">
         <h2 className="pagina-titulo">Gestion de Permisos</h2>
 
@@ -90,6 +88,5 @@ export const PermisosPagina = () => {
           />
         )}
       </div>
-    </Layout>
   );
 };

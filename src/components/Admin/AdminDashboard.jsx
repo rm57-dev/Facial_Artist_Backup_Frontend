@@ -98,53 +98,6 @@ export function AdminDashboard({ onClose }) {
         </div>
       </header>
 
-      {/* Estadísticas */}
-      <div className="stats-grid">
-        <div className="card">
-          <div className="card-header">
-            <span>Citas Hoy</span>
-            <Clock size={16} className="gold-icon" />
-          </div>
-          <div className="card-body">
-            <h3>{stats.todayAppointments}</h3>
-            <p>+2 desde ayer</p>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="card-header">
-            <span>Esta Semana</span>
-            <Calendar size={16} className="gold-icon" />
-          </div>
-          <div className="card-body">
-            <h3>{stats.weekAppointments}</h3>
-            <p>+12% vs semana anterior</p>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="card-header">
-            <span>Ingresos Mes</span>
-            <BarChart3 size={16} className="gold-icon" />
-          </div>
-          <div className="card-body">
-            <h3>{formatCurrency(stats.monthRevenue)}</h3>
-            <p>+8% vs mes anterior</p>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="card-header">
-            <span>Clientas Activas</span>
-            <Users size={16} className="gold-icon" />
-          </div>
-          <div className="card-body">
-            <h3>{stats.activeClients}</h3>
-            <p>+5 nuevas este mes</p>
-          </div>
-        </div>
-      </div>
-
       {/* Tabs */}
       <div className="tabs-container">
         <div className="tabs">

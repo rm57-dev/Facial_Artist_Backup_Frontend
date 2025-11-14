@@ -53,7 +53,7 @@ export const Registro = () => {
         </div>
 
         {/* ENCABEZADO */}
-        <div className="registro-icono">👤</div>
+        <div className="registro-icono"></div>
         <h2 className="registro-titulo">Únete a Nosotras</h2>
         <p className="registro-subtitulo">
           Crea tu cuenta y comienza tu viaje de belleza
@@ -111,7 +111,6 @@ export const Registro = () => {
                   name="telefono"
                   value={formData.telefono}
                   onChange={handleChange}
-                  placeholder="+57 300 000 0000"
                   required
                 />
               </div>

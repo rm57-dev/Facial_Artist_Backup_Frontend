@@ -8,7 +8,6 @@ export const Principal = () => {
   const navigate = useNavigate();
 
   return (
-    <Layout>
       <div className="principal-dashboard">
       <h1 className="principal-bienvenida">Bienvenido {user?.nombre}</h1>
       <p className="principal-rol">Rol: {user?.rol}</p>
@@ -17,25 +16,24 @@ export const Principal = () => {
         <Card
           titulo="Gestion de Usuarios"
           descripcion="Crear, editar y eliminar usuarios del sistema."
-          onClick={() => navigate("/usuarios")}
+          onClick={() => navigate("/admin/usuarios")}
         />
         <Card
           titulo="Gestion de Roles"
           descripcion="Administra los diferentes roles disponibles."
-          onClick={() => navigate("/roles")}
+          onClick={() => navigate("/admin/roles")}
         />
         <Card
           titulo="Gestion de Permisos"
           descripcion="Define y organiza los permisos del sistema."
-          onClick={() => navigate("/permisos")}
+          
         />
         <Card
           titulo="Rol - Permisos"
           descripcion="Asigna los permisos a cada rol."
-          onClick={() => navigate("/rol-permisos")}
+          onClick={() => navigate("/admin/rol-permisos")}
         />
       </div>
       </div>
-    </Layout>
     );
 };

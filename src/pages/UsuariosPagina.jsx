@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { ModalUsuario } from "../components/ui/ModalUsuario";
 import { leerUsuarios, eliminarUsuario, actualizarUsuario, crearUsuario } from "../services/usuarioService";
 import { leerRoles } from "../services/rolService";
-import { Layout } from "../components/layout/Layout";
 
 export const UsuariosPagina = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -30,7 +29,6 @@ export const UsuariosPagina = () => {
   };
 
   return (
-    <Layout>
       <div className="pagina-contenedor">
         <h2 className="pagina-titulo">Gestion de Usuarios</h2>
 
@@ -104,6 +102,5 @@ export const UsuariosPagina = () => {
           />
         )}
       </div>
-    </Layout>
   );
 };

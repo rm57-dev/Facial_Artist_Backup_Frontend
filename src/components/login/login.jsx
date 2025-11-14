@@ -17,7 +17,7 @@ export const Login = () => {
 
     if (userLogged) {
       if (userLogged.rol === "Administrador") {
-        navigate("/principal");
+    navigate("/admin");  
       } else if (userLogged.rol === "Usuario") {
         navigate("/client-dashboard");
       } else {

@@ -4,7 +4,7 @@ import { leerRoles } from "../services/rolService";
 import { leerPermisos } from "../services/permisoService";
 
 import { leerRolPermisos, crearRolPermiso, eliminarRolPermiso, leerPermisosDeRol } from "../services/rolPermisoService";
-import { Layout } from "../components/layout/Layout";
+
 
 export const RolPermisoPagina = () => {
   const [rolPermisos, setRolPermisos] = useState([]);
@@ -46,7 +46,6 @@ export const RolPermisoPagina = () => {
   };
 
   return (
-    <Layout>
       <div className="pagina-contenedor">
         <h2 className="pagina-titulo">Asignacion Rol - Permiso</h2>
 
@@ -106,6 +105,5 @@ export const RolPermisoPagina = () => {
           />
         )}
       </div>
-    </Layout>
   );
 };
