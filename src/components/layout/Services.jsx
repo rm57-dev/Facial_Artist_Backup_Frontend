@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Services.css";
 
-import lifting from "../assets/ceja1.jpg";
-import shadow from "../assets/ceja2.jpg";
-import labios from "../assets/ceja3.jpg";
-import laminado from "../assets/ceja5.jpg";
-import diseno from "../assets/ceja6.jpg";
-import henna from "../assets/cejagaleria.jpg";
+import lifting from "../assets/ojo1.jpg";
+import shadow from "../assets/ceja3.jpg";
+import labios from "../assets/labio1.jpg";
+import laminado from "../assets/cejalaminada.jpg";
+import diseno from "../assets/ceja5.jpg";
+import henna from "../assets/ceja6.jpg";
 
 const Services = () => {
   const navigate = useNavigate();

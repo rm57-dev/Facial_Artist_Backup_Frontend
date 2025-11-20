@@ -1,24 +1,36 @@
-
 import React, { useState } from "react";
 import {
   Calendar,
   Users,
   Clock,
   Settings,
-  BarChart3,
   RefreshCw,
   ExternalLink,
   LogOut,
   Bell,
+  Scissors
 } from "lucide-react";
+
 import "./AdminDashboard.css";
+
 import { CalendarView } from "./CalendarView";
 import { AppointmentsList } from "./AppointmentsList";
 import { ClientsManager } from "./ClientsManager";
 import { ReminderSettings } from "./ReminderSettings";
 
+// MODALES
+import { ProfessionalsModal } from "./ProfessionalsModal.jsx";
+import { ServiceModal } from "./ServiceModal.jsx";
+
 export function AdminDashboard({ onClose }) {
   const [activeView, setActiveView] = useState("calendar");
+
+  // Estado modal Profesionales
+  const [openProfessionalsModal, setOpenProfessionalsModal] = useState(false);
+
+  // Estado modal Servicios
+  const [openServiceModal, setOpenServiceModal] = useState(false);
+
   const [isGoogleCalendarSynced, setIsGoogleCalendarSynced] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
 
@@ -46,6 +58,7 @@ export function AdminDashboard({ onClose }) {
 
   return (
     <div className="admin-container">
+      {/* HEADER */}
       <header className="admin-header">
         <div className="admin-left">
           <div className="icon-circle">
@@ -55,6 +68,7 @@ export function AdminDashboard({ onClose }) {
             <h1>Panel de Administración</h1>
             <p>Natalia Salazar Artist Studio</p>
           </div>
+
           <div className="google-sync">
             {isGoogleCalendarSynced ? (
               <span className="sync-success">
@@ -98,7 +112,7 @@ export function AdminDashboard({ onClose }) {
         </div>
       </header>
 
-      {/* Tabs */}
+      {/* TABS */}
       <div className="tabs-container">
         <div className="tabs">
           <button
@@ -107,23 +121,42 @@ export function AdminDashboard({ onClose }) {
           >
             <Calendar size={14} /> Calendario
           </button>
+
           <button
             className={activeView === "appointments" ? "tab active" : "tab"}
             onClick={() => setActiveView("appointments")}
           >
             <Clock size={14} /> Lista de Citas
           </button>
+
           <button
             className={activeView === "clients" ? "tab active" : "tab"}
             onClick={() => setActiveView("clients")}
           >
             <Users size={14} /> Clientas
           </button>
+
           <button
             className={activeView === "reminders" ? "tab active" : "tab"}
             onClick={() => setActiveView("reminders")}
           >
             <Bell size={14} /> Recordatorios
+          </button>
+
+          {/* BOTÓN PROFESIONALES */}
+          <button
+            className="tab"
+            onClick={() => setOpenProfessionalsModal(true)}
+          >
+            <Settings size={14} /> Profesionales
+          </button>
+
+          {/* BOTÓN SERVICIOS */}
+          <button
+            className="tab"
+            onClick={() => setOpenServiceModal(true)}
+          >
+            <Scissors size={14} /> Servicios
           </button>
         </div>
 
@@ -134,6 +167,22 @@ export function AdminDashboard({ onClose }) {
           {activeView === "reminders" && <ReminderSettings />}
         </div>
       </div>
+
+      {/* MODAL PROFESIONALES */}
+      <ProfessionalsModal
+        open={openProfessionalsModal}
+        onOpenChange={setOpenProfessionalsModal}
+      />
+
+      {/* MODAL SERVICIOS */}
+<ServiceModal
+  isOpen={openServiceModal}
+  onClose={() => setOpenServiceModal(false)}
+  onSave={(data) => {
+    console.log("Nuevo servicio guardado:", data);
+  }}
+/>
+
     </div>
   );
 }

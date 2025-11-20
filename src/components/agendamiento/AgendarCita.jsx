@@ -10,7 +10,7 @@ export const AgendarCita = () => {
   const [formData, setFormData] = useState({
     servicio: "",
     profesional: "",
-    fecha: new Date(), // se inicia con la fecha actual
+    fecha: new Date(),
     hora: "",
     nombre: "",
     celular: "",
@@ -31,6 +31,8 @@ export const AgendarCita = () => {
     e.preventDefault();
 
     const citaData = {
+      servicio: formData.servicio,
+      profesional: formData.profesional,
       fecha: formData.fecha
         ? new Date(formData.fecha).toISOString().split("T")[0]
         : null,
@@ -38,40 +40,51 @@ export const AgendarCita = () => {
         formData.hora.includes("AM") || formData.hora.includes("PM")
           ? convertirHora12a24(formData.hora)
           : formData.hora,
-      nota: formData.notas || "",
+      nombre: formData.nombre,
+      celular: formData.celular,
+      email: formData.email,
+      notas: formData.notas || "",
       estado: "pendiente",
       id_usuario: null,
     };
 
     try {
+      // 🔹 Modificación: modo cors para evitar errores de fetch
       const response = await fetch("http://localhost:3000/api/citas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(citaData),
+        mode: "cors", 
       });
+
+      // 🔹 Validar respuesta antes de parsear JSON
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        alert("⚠️ " + (data.error || "Error al registrar cita"));
+        return;
+      }
 
       const data = await response.json();
 
-      if (response.ok) {
-        alert("✅ Cita registrada correctamente");
-        console.log("Cita guardada:", data);
+      alert("✅ Cita registrada correctamente");
+      console.log("Cita guardada:", data);
 
-        setFormData({
-          servicio: "",
-          profesional: "",
-          fecha: new Date(),
-          hora: "",
-          nombre: "",
-          celular: "",
-          email: "",
-          notas: "",
-        });
-      } else {
-        alert("⚠️ " + (data.error || "Error al registrar cita"));
-      }
+      // 🔹 Reset formulario
+      setFormData({
+        servicio: "",
+        profesional: "",
+        fecha: new Date(),
+        hora: "",
+        nombre: "",
+        celular: "",
+        email: "",
+        notas: "",
+      });
     } catch (error) {
       console.error("Error al conectar con el backend:", error);
-      alert("Error de conexión con el servidor");
+      alert(
+        "Error de conexión con el servidor. Asegúrate de que el backend esté corriendo en http://localhost:3000"
+      );
     }
   };
 
@@ -137,13 +150,13 @@ export const AgendarCita = () => {
             <div className="campo_doble">
               <div className="campo calendario-inline">
                 <label>Selecciona la fecha *</label>
-                {/*  Aquí el calendario siempre visible */}
+
                 <DatePicker
                   selected={formData.fecha}
                   onChange={handleDateChange}
                   dateFormat="dd/MM/yyyy"
                   minDate={new Date()}
-                  inline // hace que el calendario esté siempre visible
+                  inline
                 />
               </div>
 
@@ -221,7 +234,6 @@ export const AgendarCita = () => {
         </form>
       </div>
 
-      {/* -------- BLOQUE DERECHO -------- */}
       <div className="bloque_derecho">
         <div className="login_box">
           <h4>¿Ya tienes cuenta?</h4>
@@ -231,7 +243,7 @@ export const AgendarCita = () => {
           </p>
           <button
             className="btn_login"
-            onClick={() => navigate("/login")} // redirige al login
+            onClick={() => navigate("/login")}
           >
             Iniciar Sesión / Registrarse
           </button>

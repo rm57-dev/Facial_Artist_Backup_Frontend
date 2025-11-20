@@ -29,7 +29,7 @@ import { TrafficLight } from "./TrafficLight";
 import "./AppointmentsList.css";
 
 export function AppointmentsList() {
-  // ✅ API segura (compatible con Vite, CRA o fallback)
+  // API
   const API = (() => {
     if (typeof import.meta !== "undefined" && import.meta.env) {
       return import.meta.env.VITE_API_URL || "http://localhost:3000";
@@ -43,7 +43,7 @@ export function AppointmentsList() {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
-  // 🔹 Cargar citas desde el backend (versión integrada)
+  // GET Citas
   useEffect(() => {
     const fetchCitas = async () => {
       try {
@@ -73,7 +73,29 @@ export function AppointmentsList() {
     fetchCitas();
   }, [API]);
 
-  // 🔹 Filtrado
+  // 🔥 CORREGIDO — Confirmar cita
+  const handleConfirm = async (id) => {
+    try {
+      const resp = await fetch(`${API}/api/citas/confirmar/${id}`, {
+        method: "PUT",
+      });
+
+      if (!resp.ok) throw new Error("Error al confirmar cita");
+      const updated = await resp.json();
+
+      setAppointments((prev) =>
+        prev.map((apt) =>
+          apt.id === id ? { ...apt, status: "confirmada" } : apt
+        )
+      );
+
+      alert("Cita confirmada y correo enviado al cliente.");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // Filtros
   const filteredAppointments = appointments
     .filter((a) => {
       const matchName = a.clientName
@@ -91,16 +113,16 @@ export function AppointmentsList() {
       return dateA - dateB;
     });
 
-  // 🔹 Colores de estado
+  // Colores
   const getStatusColor = (status) => {
     switch (status) {
-      case "confirmed":
+      case "confirmada":
         return "status-green";
-      case "pending":
+      case "pendiente":
         return "status-yellow";
-      case "completed":
+      case "completada":
         return "status-blue";
-      case "cancelled":
+      case "cancelada":
         return "status-red";
       default:
         return "status-gray";
@@ -109,27 +131,26 @@ export function AppointmentsList() {
 
   const getStatusText = (status) => {
     switch (status) {
-      case "confirmed":
+      case "confirmada":
         return "Confirmada";
-      case "pending":
+      case "pendiente":
         return "Pendiente";
-      case "completed":
+      case "completada":
         return "Completada";
-      case "cancelled":
+      case "cancelada":
         return "Cancelada";
       default:
         return status;
     }
   };
 
-  // 🔹 Semáforo
   const handleTrafficLightChange = (id, color) => {
     setAppointments((prev) =>
       prev.map((apt) => (apt.id === id ? { ...apt, trafficLight: color } : apt))
     );
   };
 
-  // 🔹 Eliminar cita (DELETE)
+  // DELETE Cita
   const handleDelete = async (id) => {
     try {
       const resp = await fetch(`${API}/api/citas/${id}`, { method: "DELETE" });
@@ -140,13 +161,13 @@ export function AppointmentsList() {
     }
   };
 
-  // 🔹 Editar cita
+  // Editar
   const openEdit = (appointment) => {
     setSelectedAppointment(appointment);
     setIsEditDialogOpen(true);
   };
 
-  // 🔹 Guardar edición (PUT)
+  // Guardar edición
   const handleSaveEdit = async (updatedFields) => {
     if (!selectedAppointment) return;
     const id = selectedAppointment.id;
@@ -187,7 +208,6 @@ export function AppointmentsList() {
     }
   };
 
-  // 🔹 Formateadores
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString("es-ES", {
@@ -226,10 +246,10 @@ export function AppointmentsList() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Todos</SelectItem>
-                <SelectItem value="confirmed">Confirmadas</SelectItem>
-                <SelectItem value="pending">Pendientes</SelectItem>
-                <SelectItem value="completed">Completadas</SelectItem>
-                <SelectItem value="cancelled">Canceladas</SelectItem>
+                <SelectItem value="confirmada">Confirmadas</SelectItem>
+                <SelectItem value="pendiente">Pendientes</SelectItem>
+                <SelectItem value="completada">Completadas</SelectItem>
+                <SelectItem value="cancelada">Canceladas</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -276,6 +296,19 @@ export function AppointmentsList() {
                 <div className="appointment-actions">
                   <p className="price">{formatPrice(appointment.price)}</p>
                   <p className="phone">{appointment.clientPhone}</p>
+
+                  {/* ✔ BOTÓN CONFIRMAR */}
+                  {appointment.status === "pendiente" && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="btn-green-outline"
+                      onClick={() => handleConfirm(appointment.id)}
+                    >
+                      Confirmar
+                    </Button>
+                  )}
+
                   <Button
                     variant="outline"
                     size="sm"
@@ -284,6 +317,7 @@ export function AppointmentsList() {
                   >
                     <Edit size={14} /> Editar
                   </Button>
+
                   <Button
                     variant="outline"
                     size="sm"

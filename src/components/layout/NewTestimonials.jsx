@@ -5,33 +5,27 @@ export function NewTestimonials() {
   const testimonials = [
     {
       id: 1,
-      name: "María González",
-      treatment: "Microblading",
-      rating: 5,
+      name: "Sofía Vargas Viloria",
       comment:
-        "El resultado del microblading superó mis expectativas. Natalia es una verdadera artista, mis cejas quedaron perfectas y completamente naturales. ¡Súper recomendada!",
+        "Excelente servicio, mis cejitas perfectas con Nata y Deri. Los recomiendo un montón, vale completamente la pena, llegué con mis cejas destruidas y las convirtieron por completo 🤍🤍🤍 gracias! ",
       avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop",
+        "https://lh3.googleusercontent.com/a/ACg8ocJ9hnBkZYznsNvcZ4CBTLYkeMhxj9JOWDIJSb3LLKPgfUl1Mg=w72-h72-p-rp-mo-br100",
     },
     {
       id: 2,
-      name: "Carolina Pérez",
-      treatment: "Lifting de Pestañas",
-      rating: 5,
+      name: "Camilo Zambrano",
       comment:
-        "Increíble el cambio en mi mirada con el lifting de pestañas. El ambiente de la clínica es súper relajante y el servicio es excelente. Definitivamente volveré.",
+        "Excelente servicio! Su atención es personalizada y profesional. Mi esposa siempre queda encantada Y dejan sus cejas perfectas!",
       avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+        "https://lh3.googleusercontent.com/a/ACg8ocIKXcf75dSeDJf7sCD8CdmqpY98TyzcFWg5P1Z45A090JEkRw=w72-h72-p-rp-mo-br100",
     },
     {
       id: 3,
-      name: "Ana Rodríguez",
-      treatment: "Tratamiento Facial",
-      rating: 5,
+      name: "Daniela Cifuentes Castro",
       comment:
-        "Los tratamientos faciales de Natalia son espectaculares. Mi piel se ve radiante y rejuvenecida. Es la mejor inversión que he hecho para mi cuidado personal.",
+       "Amo este lugar, vivo en Cali y siempre que necesito de sus servicios voy hasta Palmira para hacer uso de los servicios de este gran equipo",
       avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+        "https://lh3.googleusercontent.com/a-/ALV-UjXuguEl1C3-kzI5JShugvbHuCxJj__PLLXAuJe8mXAcKN09KeAw=w72-h72-p-rp-mo-br100",
     },
   ];
 
@@ -62,12 +56,6 @@ export function NewTestimonials() {
 
               <h4>{t.name}</h4>
               <p className="treatment">{t.treatment}</p>
-
-              <div className="stars">
-                {[...Array(t.rating)].map((_, i) => (
-                  <span key={i}>★</span>
-                ))}
-              </div>
 
               <blockquote>"{t.comment}"</blockquote>
 

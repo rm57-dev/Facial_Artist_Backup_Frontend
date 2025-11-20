@@ -88,14 +88,8 @@ const Footer = () => {
             >
               <Facebook size={18} />
             </a>
-            <a
-              href="https://twitter.com/nataliasalazarartist"
-              target="_blank"
-              rel="noreferrer"
-              className="icon twitter"
-            >
-              <Twitter size={18} />
-            </a>
+          
+            
           </div>
         </div>
       </div>

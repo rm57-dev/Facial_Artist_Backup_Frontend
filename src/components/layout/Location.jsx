@@ -1,13 +1,14 @@
 import React from "react";
 import "./Location.css";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, Phone } from "lucide-react";
 
 export function Location() {
   const locationDetails = [
     {
       icon: <MapPin />,
       title: "Dirección Completa",
-      content: "Cl. 33 B #7-53, Urbanización del bosque, Palmira, Valle del Cauca",
+      content:
+        "Cl. 33 B #7-53, Urbanización del bosque, Palmira, Valle del Cauca",
     },
     {
       icon: <Clock />,
@@ -15,18 +16,35 @@ export function Location() {
       content:
         "Lunes a Viernes: 9:00 AM - 7:00 PM\nSábados: 9:00 AM - 5:00 PM\nDomingos: Cerrado",
     },
+{
+  icon: <Phone />,
+  title: "Necesito ayuda",
+  content: (
+    <a
+      href="https://wa.me/573168978439"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="whatsapp-link"
+    >
+      Nuestro WhatsApp: <strong> 316 897 8439</strong>
+    </a>
+  ),
+  extraClass: "help-card",
+}
   ];
 
   return (
     <section id="ubicacion" className="location-section">
       <div className="location-container">
+
         {/* Header */}
         <div className="location-header">
           <h2>Cómo Llegar</h2>
           <div className="underline"></div>
           <div className="location-subtitle">
             <p>
-           Nos ubicamos en el suroeste de Palmira, en una zona tranquila y segura, con fácil acceso y rodeada de comercios para tu comodidad.
+              Nos ubicamos en el suroeste de Palmira, en una zona tranquila
+              y segura, con fácil acceso y rodeada de comercios para tu comodidad.
             </p>
           </div>
         </div>
